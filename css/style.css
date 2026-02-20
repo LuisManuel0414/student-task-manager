@@ -1,0 +1,284 @@
+/* Default light mode variables */
+:root {
+    --bg-color: linear-gradient(135deg,#667eea,#764ba2);
+    --card-bg: #fff;
+    --text-color: #333;
+    --input-bg: #fff;
+    --input-text: #333;
+
+    --task-bg: #f4f4f4;
+    --task-text: #333;
+    --delete-bg: #e53e3e;
+    --delete-hover-bg: #c53030;
+    --delete-text: #fff;
+}
+body.dark {
+    --bg-color: #1e1e1e;
+    --card-bg: #2c2c2c;
+    --text-color: #fff;
+    --input-bg: #3c3c3c;
+    --input-text: #fff;
+
+    --task-bg: #3c3c3c;
+    --task-text: #fff;
+    --delete-bg: #ff6b6b;
+    --delete-hover-bg: #e53e3e;
+    --delete-text: #fff;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--bg-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 50px 0;
+    transition: all 0.5s ease;
+}
+
+.card {
+    background: var(--card-bg);
+    border-radius: 15px;
+    padding: 30px;
+    width: 400px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    animation: fadeIn 0.8s ease;
+    color: var(--text-color);
+}
+
+input[type="text"], input[type="date"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background: var(--input-bg);
+    color: var(--input-text);
+    transition: all 0.3s;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+/* Headings */
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--text-color);
+    transition: color 0.5s ease;
+}
+
+/* Form input fields */
+input[type="text"], input[type="date"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    transition: 0.3s;
+}
+
+input[type="text"]:focus, input[type="date"]:focus {
+    border-color: #667eea;
+    outline: none;
+}
+
+button:hover {
+    background: #5a67d8;
+    transform: scale(1.05);
+}
+
+/* Task list */
+ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+li {
+    background: #f4f4f4;           /* fallback */
+    background: var(--task-bg);
+    color: var(--task-text);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s;
+}
+
+
+li:hover {
+    background: #e2e8f0;
+}
+
+li.overdue {
+    border-left: 4px solid red;
+}
+
+li button.delete {
+    background: var(--delete-bg);
+    color: var(--delete-text);
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+li button.delete:hover {
+    background: var(--delete-hover-bg);
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+    from {opacity:0; transform:translateY(20px);}
+    to {opacity:1; transform:translateY(0);}
+}
+
+/* Dark mode */
+body.dark {
+    background: #1e1e1e;
+    color: white;
+}
+
+body.dark .card {
+    background: #2c2c2c;
+    color: white;
+}
+
+body.dark input, body.dark button {
+    border: none;
+}
+
+.completed .task-text {
+    text-decoration: line-through;
+    color: green;
+    opacity: 0.7;
+    transition: all 0.5s;
+}
+
+.complete-checkbox {
+    margin-right: 10px;
+    cursor: pointer;
+}
+/* Slide & fade animation for new tasks */
+.task-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.task-item.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.stats {
+    background: #f0f4f8;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+    transition: all 0.3s;
+}
+
+body.dark .stats {
+    background: #3a3a3a;
+    color: #fff;
+}
+
+/* Card width for responsiveness */
+.card {
+    width: 400px;
+    max-width: 90%;
+    margin: 20px auto;
+}
+
+/* Input and button responsiveness */
+input[type="text"], input[type="date"], button {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Task list on small screens */
+@media (max-width: 480px) {
+    .task-text {
+        font-size: 14px;
+    }
+    button.delete-btn {
+        padding: 5px 8px;
+        font-size: 12px;
+    }
+}
+
+li.task-item {
+    background: #f9fafb;
+    padding: 12px 15px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+body.dark li.task-item {
+    background: #2e2e2e;
+    color: #fff;
+}
+
+.task-item.dragging {
+    opacity: 0.5;
+    transform: scale(1.05);
+    border: 2px dashed #667eea;
+}
+/* Transition for moving tasks */
+.task-item {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Optional: slightly dim completed tasks */
+.task-item.completed .task-text {
+    opacity: 0.7;
+    text-decoration: line-through;
+}
+
+/* Light mode (default) */
+.task-item.overdue { background: #f3b0b0; color: #000; }
+.task-item.today { background: #ffd3a1; color: #000; }
+.task-item.upcoming { background: #9cf59c; color: #000; }
+
+/* Dark mode */
+body.dark .task-item.overdue { background: #7f1a1a; color: #fff; }
+body.dark .task-item.today { background: #92400e; color: #fff; }
+body.dark .task-item.upcoming { background: #14532d; color: #fff; }
+
+/* Optional: add transition for smooth color change */
+.task-item {
+    transition: all 0.3s ease;
+}
+
+#calendar-filter input,
+#calendar-filter button {
+    padding: 5px 10px;
+    margin-right: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+body.dark #calendar-filter input,
+body.dark #calendar-filter button {
+    background: #333;
+    color: #fff;
+    border: 1px solid #555;
+}
